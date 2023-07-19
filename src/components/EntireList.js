@@ -1,11 +1,15 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import AddTodo from "./AddTodo";
 import ListTodo from "./ListTodo";
 
 
 
 const EntireList = () => {
-    const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
+  let lodos;
+  useEffect(() => {
+  lodos  =[...todos]
+  },[todos])
 
     return (
       <div>

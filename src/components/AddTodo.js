@@ -1,34 +1,34 @@
-import { useState } from 'react'
+import {useState } from 'react'
 
-function AddTodo({ todos,setTodos }) {
+function AddTodo({ todos, setTodos }) {
   const [inputValue, setInputValue] = useState('')
 
   const onSubmit = () => {
-    if (inputValue.task !== '') {
-      setTodos([...todos, { id: todos.length, task:inputValue, pending: true }])
-    console.log(todos)
+    if (inputValue.trim() !== '') {
+      const todo = { id: todos.length, task: inputValue, pending: true }
+      setTodos([...todos,todo])
     }
     setInputValue('')
   }
-
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      onSubmit();
+      onSubmit()
     }
   }
 
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+  }
 
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Add To do"
+        placeholder="Add Todo"
         value={inputValue}
         onKeyUpCapture={handleKeyPress}
-        onChange={(e) => {
-          setInputValue(e.target.value)
-        }}
+        onChange={handleChange}
       />
       <button type="submit" onClick={onSubmit}>
         Add
